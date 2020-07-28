@@ -16,6 +16,14 @@ JupyterLab extension to show a dependency graph of all the available plugins.
 jupyter labextension install jupyterlab-plugin-graph
 ```
 
+## Usage
+
+Open the command palette and search for `plugin`:
+
+![image](https://user-images.githubusercontent.com/591645/88685842-aeb74500-d0f6-11ea-873e-e768863c81fd.png)
+
+Click on the command to open the interactive graph in the main area!
+
 ## Scope
 
 This extension is mostly useful to JupyterLab developers who are developing a new extension, and want to double check the dependencies between the plugins.
