@@ -2,7 +2,7 @@
 
 ![Github Actions Status](https://github.com/jtpio/jupyterlab-plugin-graph/workflows/Build/badge.svg)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jtpio/jupyterlab-plugin-graph/master?urlpath=lab)
 
-JupyterLab extension to show a dependency graph of all the available plugins.
+JupyterLab extension to show an interactive dependency graph of all the installed plugins.
 
 ![screencast](https://user-images.githubusercontent.com/591645/88682890-7eba7280-d0f3-11ea-8cd0-0d6ef6ccd841.gif)
 

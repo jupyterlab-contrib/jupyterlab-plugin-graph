@@ -1,7 +1,7 @@
 name: jupyterlab-plugin-graph-demo
 channels:
-  - conda-forge
+- conda-forge
 dependencies:
-  - python >=3.8,<3.9.0a0
-  - jupyterlab >=2,<3.0.0a0
-  - nodejs >=12,<13.0.0a0
+- python
+- jupyterlab=2
+- nodejs

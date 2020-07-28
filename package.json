@@ -1,7 +1,7 @@
 {
   "name": "jupyterlab-plugin-graph",
   "version": "0.1.0",
-  "description": "JupyterLab extension to show a dependency graph of all the plugins",
+  "description": "JupyterLab extension to show an interactive dependency graph of the installed plugins",
   "keywords": [
     "jupyter",
     "jupyterlab",
