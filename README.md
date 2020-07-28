@@ -2,9 +2,7 @@
 
 ![Github Actions Status](https://github.com/jtpio/jupyterlab-plugin-graph/workflows/Build/badge.svg)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jtpio/jupyterlab-plugin-graph/master?urlpath=lab)
 
-JupyterLab extension to show a dependency of all the plugins
-
-
+JupyterLab extension to show a dependency graph of all the available plugins.
 
 ## Requirements
 
@@ -15,6 +13,14 @@ JupyterLab extension to show a dependency of all the plugins
 ```bash
 jupyter labextension install jupyterlab-plugin-graph
 ```
+
+## Scope
+
+This extension is mostly useful to JupyterLab developers who are developing a new extension, and want to double check the dependencies between the plugins.
+
+But it can also be of interest to other folks interested in the inner workings of the whole JupyterLab application.
+
+Additionally, this extension can be used in a pure Lumino application as well.
 
 ## Contributing
 
@@ -54,6 +60,5 @@ Now every change will be built locally and bundled into JupyterLab. Be sure to r
 ### Uninstall
 
 ```bash
-
 jupyter labextension uninstall jupyterlab-plugin-graph
 ```
