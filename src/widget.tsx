@@ -6,30 +6,9 @@ import { Widget } from '@lumino/widgets';
 
 import cytoscape from 'cytoscape';
 
-// @ts-ignore
-import cola from 'cytoscape-cola';
-
-// @ts-ignore
-import popper from 'cytoscape-popper';
-
-// @ts-ignore
-import dagre from 'cytoscape-dagre';
-
-// @ts-ignore
-import klay from 'cytoscape-klay';
-
-// @ts-ignore
-import cise from 'cytoscape-cise';
-
 import React, { useState } from 'react';
 
 import { Model } from './model';
-
-cytoscape.use(cola);
-cytoscape.use(popper);
-cytoscape.use(dagre);
-cytoscape.use(klay);
-cytoscape.use(cise);
 
 class Graph extends Widget {
   constructor(model: Model) {
@@ -49,7 +28,8 @@ class Graph extends Widget {
         label = plugins[id].provides.name;
       }
 
-      const match = (name: string) => filter === '' || name.toLowerCase().match(filter.toLowerCase());
+      const match = (name: string) =>
+        filter === '' || name.toLowerCase().match(filter.toLowerCase());
       const addNode = (name: string) =>
         nodes.push({ data: { id: name, name } });
 
@@ -58,7 +38,7 @@ class Graph extends Widget {
       }
 
       if (requires) {
-        (plugins[id].requires as Array<any> ?? []).forEach(p => {
+        ((plugins[id].requires as Array<any>) ?? []).forEach(p => {
           if (!match(p.name) && !match(label)) {
             return;
           }
@@ -78,7 +58,7 @@ class Graph extends Widget {
       }
 
       if (optional) {
-        (plugins[id].optional as Array<any> ?? []).forEach(p => {
+        ((plugins[id].optional as Array<any>) ?? []).forEach(p => {
           if (!match(p.name) && !match(label)) {
             return;
           }
@@ -117,7 +97,7 @@ class Graph extends Widget {
         nodeDimensionsIncludeLabels: false,
         avoidOverlap: true
       };
-    }
+    };
 
     this._cy = cytoscape({
       layout: layout(),
