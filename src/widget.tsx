@@ -28,10 +28,11 @@ class Graph extends Widget {
         label = plugins[id].provides.name;
       }
 
-      const match = (name: string) =>
-        filter === '' || name.toLowerCase().match(filter.toLowerCase());
-      const addNode = (name: string) =>
+      const match = (name: string): boolean =>
+        filter === '' || !!name.toLowerCase().match(filter.toLowerCase());
+      const addNode = (name: string): void => {
         nodes.push({ data: { id: name, name } });
+      };
 
       if (match(label)) {
         addNode(label);
@@ -78,7 +79,7 @@ class Graph extends Widget {
       }
     });
 
-    const layout = () => {
+    const layout = (): cytoscape.LayoutOptions => {
       const ns = new Set<string>();
       nodes.forEach((n: cytoscape.NodeDefinition) => {
         ns.add(n.data.name);
@@ -178,7 +179,7 @@ export class GraphContainer extends MainAreaWidget<Graph> {
           name="requires"
           type="checkbox"
           defaultChecked={true}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
             model.requires = event.target.checked;
           }}
         />
@@ -194,7 +195,7 @@ export class GraphContainer extends MainAreaWidget<Graph> {
           name="optional"
           type="checkbox"
           defaultChecked={true}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
             model.optional = event.target.checked;
           }}
         />
