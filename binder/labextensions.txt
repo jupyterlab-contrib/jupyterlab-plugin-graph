@@ -1,0 +1,6 @@
+# development install of jupyterlab-plugin-graph
+.
+
+# some additional recommended labextensions, uncomment to enable
+# @jupyter-widgets/jupyterlab-manager
+# @jupyterlab/toc
