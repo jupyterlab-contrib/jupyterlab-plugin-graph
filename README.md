@@ -4,6 +4,8 @@
 
 JupyterLab extension to show a dependency graph of all the available plugins.
 
+![screencast](https://user-images.githubusercontent.com/591645/88682890-7eba7280-d0f3-11ea-8cd0-0d6ef6ccd841.gif)
+
 ## Requirements
 
 * JupyterLab >= 2.0
