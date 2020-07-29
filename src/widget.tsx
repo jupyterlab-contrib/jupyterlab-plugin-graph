@@ -1,4 +1,9 @@
-import { MainAreaWidget, ReactWidget } from '@jupyterlab/apputils';
+import {
+  MainAreaWidget,
+  ReactWidget,
+  Toolbar,
+  UseSignal
+} from '@jupyterlab/apputils';
 
 import { InputGroup } from '@jupyterlab/ui-components';
 
@@ -9,12 +14,34 @@ import cytoscape from 'cytoscape';
 import React, { useState } from 'react';
 
 import { Model } from './model';
+import { Signal, ISignal } from '@lumino/signaling';
 
 class Graph extends Widget {
   constructor(model: Model) {
     super();
     this._model = model;
     this._model.filterChanged.connect(() => this.update());
+  }
+
+  /**
+   * Return the number of nodes.
+   */
+  get V(): number {
+    return this._V;
+  }
+
+  /**
+   * Return the number of edges.
+   */
+  get E(): number {
+    return this._E;
+  }
+
+  /**
+   * A signal emitted when the widget is updated.
+   */
+  get updated(): ISignal<Graph, void> {
+    return this._updated;
   }
 
   update(): void {
@@ -134,6 +161,11 @@ class Graph extends Widget {
         }
       ]
     });
+
+    this._V = this._cy.nodes().length;
+    this._E = this._cy.edges().length;
+
+    this._updated.emit(void 0);
   }
 
   protected onResize(): void {
@@ -145,6 +177,9 @@ class Graph extends Widget {
 
   private _model: Model;
   private _cy: cytoscape.Core;
+  private _V = 0;
+  private _E = 0;
+  private _updated = new Signal<this, void>(this);
 }
 
 const FilterComponent = (props: { model: Model }): JSX.Element => {
@@ -210,6 +245,26 @@ export class GraphContainer extends MainAreaWidget<Graph> {
       </label>
     );
     this.toolbar.addItem('optional', optional);
+
+    this.toolbar.addItem('spacer', Toolbar.createSpacerItem());
+
+    const nodes = ReactWidget.create(
+      <UseSignal signal={this.content.updated}>
+        {(): JSX.Element => (
+          <div style={{ marginRight: '5px' }}>{this.content.V} plugins</div>
+        )}
+      </UseSignal>
+    );
+    this.toolbar.addItem('nodes', nodes);
+
+    const edges = ReactWidget.create(
+      <UseSignal signal={this.content.updated}>
+        {(): JSX.Element => (
+          <div style={{ marginRight: '5px' }}>{this.content.E} connections</div>
+        )}
+      </UseSignal>
+    );
+    this.toolbar.addItem('edges', edges);
   }
 }
 
