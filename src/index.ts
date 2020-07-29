@@ -26,8 +26,8 @@ const extension: JupyterFrontEndPlugin<void> = {
 
       const command = 'jupyterlab-plugin-graph:open';
       commands.addCommand(command, {
-        label: 'Open the plugin dependency graph',
-        caption: 'Plugin dependency graph',
+        label: 'Plugin Dependency Graph',
+        caption: 'Open the plugin dependency graph',
         execute: () => {
           const widget = new GraphContainer({ model });
           widget.title.label = 'Plugin Graph';

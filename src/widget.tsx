@@ -51,7 +51,8 @@ class Graph extends Widget {
               target: p.name
             },
             style: {
-              'line-style': 'solid'
+              'line-style': 'solid',
+              'line-color': '#F5A636'
             },
             classes: 'top-center'
           });
@@ -71,7 +72,8 @@ class Graph extends Widget {
               target: p.name
             },
             style: {
-              'line-style': 'dashed'
+              'line-style': 'dashed',
+              'line-color': '#0072B3'
             },
             classes: 'top-center'
           });
@@ -87,15 +89,16 @@ class Graph extends Widget {
       if (ns.size >= 50) {
         return {
           name: 'circle',
-          nodeDimensionsIncludeLabels: false,
-          padding: 0,
+          nodeDimensionsIncludeLabels: true,
+          padding: 5,
           spacingFactor: 0.1,
           avoidOverlap: true
         };
       }
       return {
         name: 'concentric',
-        nodeDimensionsIncludeLabels: false,
+        nodeDimensionsIncludeLabels: true,
+        spacingFactor: 0.5,
         avoidOverlap: true
       };
     };
@@ -114,8 +117,12 @@ class Graph extends Widget {
             width: 'label',
             shape: 'rectangle',
             content: 'data(name)',
+            'padding-bottom': '10px',
             'text-valign': 'center',
-            'background-color': '#81bc00'
+            'background-color': '#81bc00',
+            'background-opacity': 0.4,
+            'border-width': 1,
+            'border-color': 'black'
           }
         },
         {
