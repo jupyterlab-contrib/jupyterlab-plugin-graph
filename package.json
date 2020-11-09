@@ -73,6 +73,6 @@
   ],
   "jupyterlab": {
     "extension": true,
-    "outputDir": "jupyterlab-plugin-graph/static"
+    "outputDir": "jupyterlab-plugin-graph/labextension"
   }
 }
