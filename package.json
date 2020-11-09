@@ -25,41 +25,54 @@
     "url": "https://github.com/jtpio/jupyterlab-plugin-graph.git"
   },
   "scripts": {
-    "build": "tsc",
-    "clean": "rimraf lib tsconfig.tsbuildinfo",
+    "build": "jlpm run build:lib && jlpm run build:labextension:dev",
+    "build:labextension": "jupyter labextension build .",
+    "build:labextension:dev": "jupyter labextension build --development True .",
+    "build:lib": "tsc",
+    "build:prod": "jlpm run build:lib && jlpm run build:labextension",
+    "clean": "jlpm run clean:lib",
+    "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
+    "clean:labextension": "rimraf jupyterlab-plugin-graph/labextension",
+    "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
-    "prepare": "jlpm run clean && jlpm run build",
-    "watch": "tsc -w"
+    "install:extension": "jupyter labextension develop --overwrite .",
+    "prepare": "jlpm run clean && jlpm run build:prod",
+    "watch": "run-p watch:src watch:labextension",
+    "watch:labextension": "jupyter labextension watch .",
+    "watch:src": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^2.0.0",
-    "@jupyterlab/apputils": "^2.0.0",
-    "@jupyterlab/ui-components": "^2.2.0",
-    "@lumino/signaling": "^1.4.2",
-    "@lumino/widgets": "^1.13.2",
+    "@jupyterlab/application": "^3.0.0-rc.7",
+    "@jupyterlab/apputils": "^3.0.0-rc.7",
+    "@jupyterlab/ui-components": "^3.0.0-rc.7",
+    "@lumino/signaling": "^1.4.3",
+    "@lumino/widgets": "^1.14.0",
     "cytoscape": "^3.14.0",
-    "react": "~16.9.0",
-    "react-dom": "~16.9.0"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@jupyterlab/builder": "^3.0.0-rc.7",
     "@types/cytoscape": "^3.8.8",
     "@types/react": "~16.9.16",
     "@types/react-dom": "~16.9.0",
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.20.3",
-    "prettier": "^1.19.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.0",
     "rimraf": "^3.0.2",
-    "typescript": "~3.9.0"
+    "typescript": "~4.0.3"
   },
   "sideEffects": [
     "style/*.css"
   ],
   "jupyterlab": {
-    "extension": true
+    "extension": true,
+    "outputDir": "jupyterlab-plugin-graph/labextension"
   }
 }
