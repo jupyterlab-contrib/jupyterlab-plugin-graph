@@ -1,6 +1,7 @@
 # jupyterlab-plugin-graph
 
-![Github Actions Status](https://github.com/jtpio/jupyterlab-plugin-graph/workflows/Build/badge.svg)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jtpio/jupyterlab-plugin-graph/main?urlpath=lab)
+![Github Actions Status](https://github.com/jtpio/jupyterlab-plugin-graph/workflows/Build/badge.svg)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jtpio/jupyterlab-plugin-graph/main?urlpath=lab)
 
 JupyterLab extension to show an interactive dependency graph of all the installed plugins.
 
