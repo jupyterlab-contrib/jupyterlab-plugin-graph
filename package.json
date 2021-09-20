@@ -32,7 +32,7 @@
     "build:prod": "jlpm run build:lib && jlpm run build:labextension",
     "clean": "jlpm run clean:lib",
     "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
-    "clean:labextension": "rimraf jupyterlab-plugin-graph/labextension",
+    "clean:labextension": "rimraf jupyterlab_plugin_graph/labextension",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
@@ -73,7 +73,7 @@
   ],
   "jupyterlab": {
     "extension": true,
-    "outputDir": "jupyterlab-plugin-graph/labextension"
+    "outputDir": "jupyterlab_plugin_graph/labextension"
   },
   "jupyter-releaser": {
     "hooks": {

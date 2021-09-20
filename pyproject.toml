@@ -6,8 +6,8 @@ build-backend = "jupyter_packaging.build_api"
 file="LICENSE"
 
 [tool.jupyter-packaging.options]
-skip-if-exists = ["jupyterlab-plugin-graph/labextension/static/style.js"]
-ensured-targets = ["jupyterlab-plugin-graph/labextension/static/style.js", "jupyterlab-plugin-graph/labextension/package.json"]
+skip-if-exists = ["jupyterlab_plugin_graph/labextension/static/style.js"]
+ensured-targets = ["jupyterlab_plugin_graph/labextension/static/style.js", "jupyterlab_plugin_graph/labextension/package.json"]
 
 [tool.jupyter-packaging.builder]
 factory = "jupyter_packaging.npm_builder"
@@ -17,4 +17,4 @@ build_cmd = "build:prod"
 npm = ["jlpm"]
 
 [tool.check-manifest]
-ignore = ["*.json", "*.ipynb", "yarn.lock", ".*", "jupyterlab-plugin-graph/labextension/**"]
+ignore = ["*.json", "*.ipynb", "yarn.lock", ".*", "jupyterlab_plugin_graph/labextension/**"]

@@ -5,7 +5,7 @@ node_modules/
 .ipynb_checkpoints
 *.tsbuildinfo
 .vscode
-jupyterlab-plugin-graph/labextension
+jupyterlab_plugin_graph/labextension
 
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
