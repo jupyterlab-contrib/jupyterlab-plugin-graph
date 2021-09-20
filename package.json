@@ -74,5 +74,16 @@
   "jupyterlab": {
     "extension": true,
     "outputDir": "jupyterlab-plugin-graph/labextension"
+  },
+  "jupyter-releaser": {
+    "hooks": {
+      "before-build-npm": [
+        "python -m pip install jupyterlab~=3.1",
+        "jlpm"
+      ]
+    }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

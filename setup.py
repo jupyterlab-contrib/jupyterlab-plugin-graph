@@ -2,84 +2,47 @@
 jupyterlab-plugin-graph setup
 """
 import json
-import os
+from pathlib import Path
 
-from jupyter_packaging import (
-    create_cmdclass, install_npm, ensure_targets,
-    combine_commands, get_version,
-)
 import setuptools
 
-HERE = os.path.abspath(os.path.dirname(__file__))
+HERE = Path(__file__).parent.resolve()
 
 # The name of the project
-name="jupyterlab-plugin-graph"
+NAME = "jupyterlab-plugin-graph"
+PACKAGE = NAME.replace('-', '_')
 
-# Get our version
-with open(os.path.join(HERE, 'package.json')) as f:
-    version = json.load(f)['version']
-
-lab_path = os.path.join(HERE, name, "labextension")
+lab_path = HERE / PACKAGE / "labextension"
 
 # Representative files that should exist after a successful build
-jstargets = [
-    os.path.join(HERE, "lib", "index.js"),
-    os.path.join(lab_path, "package.json"),
+ensured_targets = [
+    str(lab_path / "package.json"),
+    str(lab_path / "static" / "style.js"),
 ]
-
-package_data_spec = {
-    name: [
-        "*"
-    ]
-}
-
-labext_name = "jupyterlab-plugin-graph"
 
 data_files_spec = [
-    ("share/jupyter/labextensions/%s" % labext_name, lab_path, "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, HERE, "install.json"),
+    ("share/jupyter/labextensions/%s" % NAME, lab_path, "**"),
+    ("share/jupyter/labextensions/%s" % NAME, HERE, "install.json"),
 ]
 
-cmdclass = create_cmdclass("jsdeps",
-    package_data_spec=package_data_spec,
-    data_files_spec=data_files_spec
-)
+try:
+    from jupyter_packaging import wrap_installers, npm_builder, get_data_files
 
-cmdclass["jsdeps"] = combine_commands(
-    install_npm(HERE, build_cmd="build:prod", npm=["jlpm"]),
-    ensure_targets(jstargets),
-)
+    # In develop mode, just run yarn
+    builder = npm_builder(build_cmd="build", build_dir=lab_path, source_dir="src")
+    cmdclass = wrap_installers(post_develop=builder, ensured_targets=ensured_targets)
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+    setup_args = dict(
+        cmdclass=cmdclass,
+        data_files=get_data_files(data_files_spec),
+    )
+except ImportError:
+    setup_args = dict()
 
-setup_args = dict(
-    name=name,
-    version=version,
-    url="https://github.com/jtpio/jupyterlab-plugin-graph.git",
-    author="jupyterlab-plugin-graph contributors",
-    description="JupyterLab extension to show an interactive dependency graph of the installed plugins",
-    long_description= long_description,
-    long_description_content_type="text/markdown",
-    cmdclass= cmdclass,
-    packages=setuptools.find_packages(),
-    zip_safe=False,
-    include_package_data=True,
-    python_requires=">=3.6",
-    license="BSD-3-Clause",
-    platforms="Linux, Mac OS X, Windows",
-    keywords=["Jupyter", "JupyterLab"],
-    classifiers=[
-        "License :: OSI Approved :: BSD License",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Framework :: Jupyter",
-    ],
-)
 
+# Get the package info from package.json
+pkg_json = json.loads((HERE / "package.json").read_bytes())
+setup_args["version"] = pkg_json["version"]
 
 if __name__ == "__main__":
     setuptools.setup(**setup_args)
