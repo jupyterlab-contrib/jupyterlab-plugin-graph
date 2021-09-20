@@ -4,18 +4,25 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'plugin:react/recommended'
+    'plugin:react/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['@typescript-eslint'],
   rules: {
-    '@typescript-eslint/interface-name-prefix': [
+    '@typescript-eslint/naming-convention': [
       'error',
-      { prefixWithI: 'always' }
+      {
+        'selector': 'interface',
+        'format': ['PascalCase'],
+        'custom': {
+          'regex': '^I[A-Z]',
+          'match': true
+        }
+      }
     ],
     '@typescript-eslint/no-unused-vars': ['warn', { args: 'none' }],
     '@typescript-eslint/no-explicit-any': 'off',
@@ -24,15 +31,15 @@ module.exports = {
     '@typescript-eslint/quotes': [
       'error',
       'single',
-      { avoidEscape: true, allowTemplateLiterals: false }
+      { avoidEscape: true, allowTemplateLiterals: false },
     ],
     curly: ['error', 'all'],
     eqeqeq: 'error',
-    'prefer-arrow-callback': 'error'
+    'prefer-arrow-callback': 'error',
   },
   settings: {
     react: {
-      version: 'detect'
-    }
-  }
+      version: 'detect',
+    },
+  },
 };

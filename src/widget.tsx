@@ -2,7 +2,7 @@ import {
   MainAreaWidget,
   ReactWidget,
   Toolbar,
-  UseSignal
+  UseSignal,
 } from '@jupyterlab/apputils';
 
 import { InputGroup } from '@jupyterlab/ui-components';
@@ -49,7 +49,7 @@ class Graph extends Widget {
     const nodes: Array<cytoscape.NodeDefinition> = [];
     const edges: Array<cytoscape.EdgeDefinition> = [];
 
-    Object.keys(plugins).forEach(id => {
+    Object.keys(plugins).forEach((id) => {
       let label = id;
       if (plugins[id].provides) {
         label = plugins[id].provides.name;
@@ -66,7 +66,7 @@ class Graph extends Widget {
       }
 
       if (requires) {
-        ((plugins[id].requires as Array<any>) ?? []).forEach(p => {
+        ((plugins[id].requires as Array<any>) ?? []).forEach((p) => {
           if (!match(p.name) && !match(label)) {
             return;
           }
@@ -75,19 +75,19 @@ class Graph extends Widget {
           edges.push({
             data: {
               source: label,
-              target: p.name
+              target: p.name,
             },
             style: {
               'line-style': 'solid',
-              'line-color': '#F5A636'
+              'line-color': '#F5A636',
             },
-            classes: 'top-center'
+            classes: 'top-center',
           });
         });
       }
 
       if (optional) {
-        ((plugins[id].optional as Array<any>) ?? []).forEach(p => {
+        ((plugins[id].optional as Array<any>) ?? []).forEach((p) => {
           if (!match(p.name) && !match(label)) {
             return;
           }
@@ -96,13 +96,13 @@ class Graph extends Widget {
           edges.push({
             data: {
               source: label,
-              target: p.name
+              target: p.name,
             },
             style: {
               'line-style': 'dashed',
-              'line-color': '#0072B3'
+              'line-color': '#0072B3',
             },
-            classes: 'top-center'
+            classes: 'top-center',
           });
         });
       }
@@ -119,14 +119,14 @@ class Graph extends Widget {
           nodeDimensionsIncludeLabels: true,
           padding: 5,
           spacingFactor: 0.1,
-          avoidOverlap: true
+          avoidOverlap: true,
         };
       }
       return {
         name: 'concentric',
         nodeDimensionsIncludeLabels: true,
         spacingFactor: 0.5,
-        avoidOverlap: true
+        avoidOverlap: true,
       };
     };
 
@@ -135,7 +135,7 @@ class Graph extends Widget {
       container: this.node,
       elements: {
         nodes,
-        edges
+        edges,
       },
       style: [
         {
@@ -149,17 +149,17 @@ class Graph extends Widget {
             'background-color': '#81bc00',
             'background-opacity': 0.4,
             'border-width': 1,
-            'border-color': 'black'
-          }
+            'border-color': 'black',
+          },
         },
         {
           selector: 'edge',
           style: {
             'curve-style': 'bezier',
-            'target-arrow-shape': 'triangle'
-          }
-        }
-      ]
+            'target-arrow-shape': 'triangle',
+          },
+        },
+      ],
     });
 
     this._V = this._cy.nodes().length;

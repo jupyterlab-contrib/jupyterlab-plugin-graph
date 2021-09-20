@@ -1,13 +1,12 @@
 include LICENSE
-include README.md
+include *.md
 include pyproject.toml
-include jupyter-config/jupyterlab-plugin-graph.json
 
 include package.json
 include install.json
 include ts*.json
 
-graft jupyterlab-plugin-graph/labextension
+graft jupyterlab_plugin_graph/labextension
 
 # Javascript files
 graft src
