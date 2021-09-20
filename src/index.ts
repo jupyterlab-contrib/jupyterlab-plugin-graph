@@ -1,6 +1,6 @@
 import {
   JupyterFrontEnd,
-  JupyterFrontEndPlugin
+  JupyterFrontEndPlugin,
 } from '@jupyterlab/application';
 
 import { ICommandPalette } from '@jupyterlab/apputils';
@@ -34,13 +34,13 @@ const extension: JupyterFrontEndPlugin<void> = {
           widget.title.icon = buildIcon;
           shell.add(widget, 'main');
           widget.content.update();
-        }
+        },
       });
       if (palette) {
         palette.addItem({ command, category: 'Developer' });
       }
     });
-  }
+  },
 };
 
 export default extension;
