@@ -6,6 +6,8 @@
 
 JupyterLab extension to show an interactive dependency graph of all the installed plugins.
 
+![screenshot](https://user-images.githubusercontent.com/591645/134136431-e276d32a-25bd-4304-869b-340a90f0a200.png)
+
 ## Requirements
 
 - JupyterLab >= 2.0
