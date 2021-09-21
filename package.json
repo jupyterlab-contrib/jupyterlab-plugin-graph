@@ -7,12 +7,12 @@
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/jtpio/jupyterlab-plugin-graph",
+  "homepage": "https://github.com/jupyterlab-contrib/jupyterlab-plugin-graph",
   "bugs": {
-    "url": "https://github.com/jtpio/jupyterlab-plugin-graph/issues"
+    "url": "https://github.com/jupyterlab-contrib/jupyterlab-plugin-graph/issues"
   },
   "license": "BSD-3-Clause",
-  "author": "jupyterlab-plugin-graph contributors",
+  "author": "JupyterLab Contrib Team",
   "files": [
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
     "style/**/*.{css,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
@@ -22,7 +22,7 @@
   "style": "style/index.css",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jtpio/jupyterlab-plugin-graph.git"
+    "url": "https://github.com/jupyterlab-contrib/jupyterlab-plugin-graph.git"
   },
   "scripts": {
     "build": "jlpm run build:lib && jlpm run build:labextension:dev",

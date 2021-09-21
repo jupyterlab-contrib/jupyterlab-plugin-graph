@@ -1,8 +1,8 @@
 # jupyterlab-plugin-graph
 
 [![Extension status](https://img.shields.io/badge/status-ready-success "ready to be used")](https://jupyterlab-contrib.github.io/)
-![Github Actions Status](https://github.com/jtpio/jupyterlab-plugin-graph/workflows/Build/badge.svg)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jtpio/jupyterlab-plugin-graph/main?urlpath=lab)
+![Github Actions Status](https://github.com/jupyterlab-contrib/jupyterlab-plugin-graph/workflows/Build/badge.svg)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jupyterlab-contrib/jupyterlab-plugin-graph/main?urlpath=lab)
 
 JupyterLab extension to show an interactive dependency graph of all the installed plugins.
 
