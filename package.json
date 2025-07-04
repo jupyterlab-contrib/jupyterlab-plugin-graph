@@ -25,19 +25,19 @@
     "url": "https://github.com/jupyterlab-contrib/jupyterlab-plugin-graph.git"
   },
   "scripts": {
-    "build": "jlpm run build:lib && jlpm run build:labextension:dev",
+    "build": "yarn run build:lib && yarn run build:labextension:dev",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
     "build:lib": "tsc",
-    "build:prod": "jlpm run build:lib && jlpm run build:labextension",
-    "clean": "jlpm run clean:lib",
-    "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
+    "build:prod": "yarn run build:lib && yarn run build:labextension",
+    "clean": "yarn run clean:lib",
+    "clean:all": "yarn run clean:lib && yarn run clean:labextension",
     "clean:labextension": "rimraf jupyterlab_plugin_graph/labextension",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
     "install:extension": "jupyter labextension develop --overwrite .",
-    "prepare": "jlpm run clean && jlpm run build:prod",
+    "prepare": "yarn run clean && yarn run build:prod",
     "prettier": "prettier --write \"**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}\"",
     "prettier:check": "prettier --list-different \"**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}\"",
     "watch": "run-p watch:src watch:labextension",
@@ -45,30 +45,34 @@
     "watch:src": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.0.0",
-    "@jupyterlab/apputils": "^3.0.0",
-    "@jupyterlab/ui-components": "^3.0.0",
-    "@lumino/signaling": "^1.4.3",
-    "@lumino/widgets": "^1.14.0",
+    "@jupyterlab/application": "^4.0.0",
+    "@jupyterlab/apputils": "^4.0.0",
+    "@jupyterlab/ui-components": "^4.0.0",
+    "@lumino/signaling": "^2.1.2",
+    "@lumino/widgets": "^2.3.0",
     "cytoscape": "^3.14.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.0.0",
+    "@jupyterlab/builder": "^4.0.0",
     "@types/cytoscape": "^3.8.8",
-    "@types/react": "~17.0.22",
-    "@types/react-dom": "~17.0.9",
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
+    "@types/react": "~18.0.0",
+    "@types/react-dom": "~18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.25.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.4.1",
-    "rimraf": "^3.0.2",
-    "typescript": "~4.2.0"
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.0",
+    "typescript": "~5.0.0"
+  },
+  "resolutions": {
+    "@types/react": "~18.0.0",
+    "@types/react-dom": "~18.0.0"
   },
   "sideEffects": [
     "style/*.css"
@@ -80,8 +84,8 @@
   "jupyter-releaser": {
     "hooks": {
       "before-build-npm": [
-        "python -m pip install jupyterlab~=3.1",
-        "jlpm"
+        "python -m pip install jupyterlab~=4.0",
+        "yarn"
       ]
     }
   },

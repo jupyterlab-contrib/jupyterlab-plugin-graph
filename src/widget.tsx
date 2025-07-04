@@ -144,7 +144,7 @@ class Graph extends Widget {
             width: 'label',
             shape: 'rectangle',
             content: 'data(name)',
-            'padding-bottom': '10px',
+            padding: '10px',
             'text-valign': 'center',
             'background-color': '#81bc00',
             'background-opacity': 0.4,
