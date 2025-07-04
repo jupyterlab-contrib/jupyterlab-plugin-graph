@@ -2,6 +2,33 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.3.0
+
+### Features
+
+- Support for JupyterLab 4.x [#39](https://github.com/jupyterlab-contrib/jupyterlab-plugin-graph/issues/39)
+
+### Breaking Changes
+
+- Minimum JupyterLab version is now 4.0 (previously 2.0)
+
+### Maintenance and upkeep improvements
+
+- Update all dependencies to JupyterLab 4.x compatible versions
+- Migrate from private `_pluginMap` API to hybrid public/private approach
+- Fix TypeScript compilation issues with newer versions
+- Update React types to v18
+- Replace `jlpm` with `yarn` in build scripts
+- Add proper TypeScript lib configuration for modern JavaScript features
+
+### Developer improvements
+
+- Add `skipLibCheck` to TypeScript configuration for better compatibility
+- Fix ESLint/Prettier formatting issues
+- Improve plugin metadata extraction with fallback mechanism
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.2.1
 
 ([Full Changelog](https://github.com/jupyterlab-contrib/jupyterlab-plugin-graph/compare/0.2.0...0023aa04765b20cccd4b23787c23d047081781e0))

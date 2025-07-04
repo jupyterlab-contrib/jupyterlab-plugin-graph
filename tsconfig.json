@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "incremental": true,
     "jsx": "react",
+    "lib": ["es2018", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmitOnError": true,
@@ -15,9 +16,10 @@
     "resolveJsonModule": true,
     "outDir": "lib",
     "rootDir": "src",
+    "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": false,
-    "target": "es2017",
+    "target": "es2018",
     "types": []
   },
   "include": ["src/*"]

@@ -144,7 +144,7 @@ class Graph extends Widget {
             width: 'label',
             shape: 'rectangle',
             content: 'data(name)',
-            'padding-bottom': '10px',
+            padding: '10px',
             'text-valign': 'center',
             'background-color': '#81bc00',
             'background-opacity': 0.4,
@@ -187,7 +187,7 @@ const FilterComponent = (props: { model: Model }): JSX.Element => {
   const [value, setValue] = useState(model.filter);
 
   const handleFilterChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     const filter = event.target.value;
     setValue(filter);
@@ -226,7 +226,7 @@ export class GraphContainer extends MainAreaWidget<Graph> {
           }}
         />
         Requires
-      </label>
+      </label>,
     );
     this.toolbar.addItem('requires', requires);
 
@@ -242,7 +242,7 @@ export class GraphContainer extends MainAreaWidget<Graph> {
           }}
         />
         Optional
-      </label>
+      </label>,
     );
     this.toolbar.addItem('optional', optional);
 
@@ -253,7 +253,7 @@ export class GraphContainer extends MainAreaWidget<Graph> {
         {(): JSX.Element => (
           <div style={{ marginRight: '5px' }}>{this.content.V} plugins</div>
         )}
-      </UseSignal>
+      </UseSignal>,
     );
     this.toolbar.addItem('nodes', nodes);
 
@@ -262,7 +262,7 @@ export class GraphContainer extends MainAreaWidget<Graph> {
         {(): JSX.Element => (
           <div style={{ marginRight: '5px' }}>{this.content.E} connections</div>
         )}
-      </UseSignal>
+      </UseSignal>,
     );
     this.toolbar.addItem('edges', edges);
   }

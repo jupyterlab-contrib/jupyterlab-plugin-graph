@@ -10,7 +10,7 @@ JupyterLab extension to show an interactive dependency graph of all the installe
 
 ## Requirements
 
-- JupyterLab >= 2.0
+- JupyterLab >= 4.0
 
 ## Install
 
