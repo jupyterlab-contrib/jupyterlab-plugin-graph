@@ -16,10 +16,10 @@ import { GraphContainer } from './widget';
  */
 function createPluginsMap(app: JupyterFrontEnd): any {
   const plugins: any = {};
-  
+
   // Get all plugin IDs
   const pluginIds = app.listPlugins();
-  
+
   // For each plugin, create a minimal structure
   // Note: We can't access the full plugin metadata through public APIs,
   // so we'll access the private _pluginMap as a fallback
@@ -31,10 +31,10 @@ function createPluginsMap(app: JupyterFrontEnd): any {
       // We'll need to access the private plugin map to get requires/optional/provides
       requires: [],
       optional: [],
-      provides: null
+      provides: null,
     };
   }
-  
+
   // Access the private plugin map for full metadata
   // This is a temporary workaround until JupyterLab provides a public API
   try {
@@ -51,7 +51,7 @@ function createPluginsMap(app: JupyterFrontEnd): any {
   } catch (error) {
     console.warn('Could not access plugin metadata:', error);
   }
-  
+
   return plugins;
 }
 
