@@ -40,7 +40,7 @@ fields = ["description", "authors", "urls", "keywords"]
 
 [tool.hatch.build.targets.sdist]
 artifacts = ["jupyterlab_plugin_graph/labextension"]
-exclude = [".github", "binder"]
+exclude = [".github", "binder", "screenshot.png"]
 
 [tool.hatch.build.targets.wheel.shared-data]
 "jupyterlab_plugin_graph/labextension" = "share/jupyter/labextensions/jupyterlab-plugin-graph"
