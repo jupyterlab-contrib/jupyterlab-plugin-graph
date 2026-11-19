@@ -1,14 +1,37 @@
-import { expect, test } from '@jupyterlab/galata';
+import { expect, IJupyterLabPageFixture, test } from '@jupyterlab/galata';
+import { Locator } from '@playwright/test';
 
-test('should show the dependency graph of the plugins', async ({ page }) => {
-  // Open the graph from the command palette.
+/**
+ * Open the graph from the command palette.
+ */
+async function openGraph(page: IJupyterLabPageFixture): Promise<void> {
   await page.menu.clickMenuItem('View>Activate Command Palette');
   await page.keyboard.type('Plugin Dependency Graph');
   await page
     .locator('.lm-CommandPalette-item', { hasText: 'Plugin Dependency Graph' })
     .click();
-
   await expect(page.locator('.jp-PluginGraph canvas')).toBeVisible();
+}
+
+/**
+ * Take a screenshot of the graph when its transitions are complete.
+ */
+async function settledScreenshot(canvas: Locator): Promise<Buffer> {
+  let previous = await canvas.screenshot();
+  await expect
+    .poll(async () => {
+      const current = await canvas.screenshot();
+      const settled = current.equals(previous);
+      previous = current;
+      return settled;
+    })
+    .toBe(true);
+  return previous;
+}
+
+test('should show the dependency graph of the plugins', async ({ page }) => {
+  await openGraph(page);
+
   expect(await page.activity.isTabActive('Plugin Graph')).toBe(true);
   const counts = page.locator('.jp-PluginGraph-counts');
   await expect(counts).toHaveText(/^\d{3,} plugins · \d{3,} connections$/);
@@ -26,4 +49,19 @@ test('should show the dependency graph of the plugins', async ({ page }) => {
   await layout.selectOption('Circular layout');
   await expect(layout).toHaveValue('circular');
   await expect(counts).toHaveText('2 plugins · 1 connection');
+});
+
+test('should zoom with the toolbar buttons', async ({ page }) => {
+  await openGraph(page);
+
+  const canvas = page.locator('.jp-PluginGraph canvas');
+  const initial = await settledScreenshot(canvas);
+
+  await page.getByRole('button', { name: 'Zoom in' }).click();
+  const zoomedIn = await settledScreenshot(canvas);
+  expect(zoomedIn.equals(initial)).toBe(false);
+
+  await page.getByRole('button', { name: 'Zoom out' }).click();
+  const zoomedOut = await settledScreenshot(canvas);
+  expect(zoomedOut.equals(zoomedIn)).toBe(false);
 });

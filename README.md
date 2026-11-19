@@ -16,7 +16,7 @@ Open the command palette and run `Plugin Dependency Graph`.
 - An edge goes from a plugin to a service that it uses. A solid line is a required dependency, a dashed line is an optional dependency.
 - Move the pointer on a node to highlight its dependencies and see its details.
 - Click a node, or type in the filter, to show only a plugin and its neighbors.
-- Use the mouse wheel to zoom, and drag the background to pan.
+- Use the mouse wheel or the toolbar buttons to zoom, and drag the background to pan.
 - Select the force layout or the circular layout in the toolbar.
 
 ## Requirements

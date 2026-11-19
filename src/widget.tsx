@@ -11,6 +11,7 @@ import {
   InputGroup,
   ReactWidget,
   Toolbar,
+  ToolbarButton,
   UseSignal
 } from '@jupyterlab/ui-components';
 
@@ -32,6 +33,8 @@ import { LabelLayout } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 
 import React from 'react';
+
+import { zoomInIcon, zoomOutIcon } from './icons';
 
 import { ForceLayout } from './layout';
 
@@ -68,6 +71,11 @@ const MARGINS: { [layout in Layout]: number[] } = {
 };
 
 /**
+ * The zoom factor of the zoom buttons.
+ */
+const ZOOM_STEP = 1.3;
+
+/**
  * A widget that draws the plugin graph with ECharts.
  */
 class Graph extends Widget {
@@ -85,6 +93,19 @@ class Graph extends Widget {
     this._chart = null;
     this._forceLayout.dispose();
     super.dispose();
+  }
+
+  /**
+   * Zoom the graph by a factor, from the center of the view.
+   */
+  zoom(factor: number): void {
+    this._chart?.dispatchAction({
+      type: 'graphRoam',
+      seriesIndex: 0,
+      zoom: factor,
+      originX: this.node.clientWidth / 2,
+      originY: this.node.clientHeight / 2
+    });
   }
 
   protected onResize(): void {
@@ -107,13 +128,7 @@ class Graph extends Widget {
     this._chart.on('finished', () => {
       if (this._labelsStale) {
         this._labelsStale = false;
-        this._chart?.dispatchAction({
-          type: 'graphRoam',
-          seriesIndex: 0,
-          zoom: 1,
-          originX: 0,
-          originY: 0
-        });
+        this.zoom(1);
       }
     });
     this.update();
@@ -370,7 +385,8 @@ export class GraphContainer extends MainAreaWidget<Widget> {
     const trans = (options.translator ?? nullTranslator).load(
       'jupyterlab_plugin_graph'
     );
-    super({ content: new Graph({ model, trans, themeManager }) });
+    const graph = new Graph({ model, trans, themeManager });
+    super({ content: graph });
     const props = { model, trans };
     const { toolbar } = this;
     toolbar.addItem('filter', ReactWidget.create(<Filter {...props} />));
@@ -383,6 +399,22 @@ export class GraphContainer extends MainAreaWidget<Widget> {
       ReactWidget.create(<Toggle {...props} type="optional" />)
     );
     toolbar.addItem('layout', ReactWidget.create(<LayoutSelect {...props} />));
+    toolbar.addItem(
+      'zoom-in',
+      new ToolbarButton({
+        icon: zoomInIcon,
+        tooltip: trans.__('Zoom in'),
+        onClick: () => graph.zoom(ZOOM_STEP)
+      })
+    );
+    toolbar.addItem(
+      'zoom-out',
+      new ToolbarButton({
+        icon: zoomOutIcon,
+        tooltip: trans.__('Zoom out'),
+        onClick: () => graph.zoom(1 / ZOOM_STEP)
+      })
+    );
     toolbar.addItem('spacer', Toolbar.createSpacerItem());
     toolbar.addItem('counts', ReactWidget.create(<Counts {...props} />));
   }

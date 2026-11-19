@@ -10,8 +10,16 @@
   background: var(--jp-layout-color1);
 }
 
+/* The default input is taller than the toolbar. */
 .jp-PluginGraph-filter input {
   width: 220px;
+  height: var(--jp-flat-button-height);
+  line-height: var(--jp-flat-button-height);
+}
+
+.jp-PluginGraph-filter .jp-InputGroupAction {
+  bottom: 0;
+  padding: 4px 6px;
 }
 
 .jp-PluginGraph-toggle {
