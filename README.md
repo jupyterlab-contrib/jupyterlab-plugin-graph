@@ -10,7 +10,7 @@ JupyterLab extension to show an interactive dependency graph of all the installe
 
 ## Usage
 
-Open the command palette and run `Plugin Dependency Graph`.
+Select `Plugin Dependency Graph` in the Help menu, or run it from the command palette.
 
 - A node is a plugin. Its size shows how many plugins use its service.
 - An edge goes from a plugin to a service that it uses. A solid line is a required dependency, a dashed line is an optional dependency.

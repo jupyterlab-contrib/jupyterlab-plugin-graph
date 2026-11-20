@@ -51,6 +51,13 @@ test('should show the dependency graph of the plugins', async ({ page }) => {
   await expect(counts).toHaveText('2 plugins · 1 connection');
 });
 
+test('should open the graph from the Help menu', async ({ page }) => {
+  await page.menu.clickMenuItem('Help>Plugin Dependency Graph');
+
+  await expect(page.locator('.jp-PluginGraph canvas')).toBeVisible();
+  expect(await page.activity.isTabActive('Plugin Graph')).toBe(true);
+});
+
 test('should zoom with the toolbar buttons', async ({ page }) => {
   await openGraph(page);
 

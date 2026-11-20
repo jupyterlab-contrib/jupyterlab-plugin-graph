@@ -6,7 +6,7 @@ author_email: ''
 author_name: JupyterLab Contrib Team
 has_ai_rules: false
 has_binder: true
-has_settings: false
+has_settings: true
 kind: frontend
 labextension_name: jupyterlab-plugin-graph
 project_short_description: JupyterLab extension to show an interactive dependency
