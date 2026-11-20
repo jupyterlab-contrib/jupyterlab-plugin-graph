@@ -79,6 +79,23 @@ describe('jupyterlab-plugin-graph', () => {
       expect(model.graph.edges).toHaveLength(1);
     });
 
+    it('should accept the plugins that JupyterLite gives', () => {
+      const lite = { id: 'test:lite', requires: [token('test:IProvided')] };
+      const model = new Model({
+        plugins: [
+          lite as JupyterLab.IPluginInfo,
+          plugin('test:provider', { provides: token('test:IProvided') })
+        ]
+      });
+      expect(model.graph.nodes.map(node => node.id)).toEqual([
+        'test:lite',
+        'test:provider'
+      ]);
+      expect(model.graph.edges).toEqual([
+        { source: 'test:lite', target: 'test:provider', optional: false }
+      ]);
+    });
+
     it('should keep the graph when the layout changes', () => {
       const model = createModel();
       const { graph } = model;

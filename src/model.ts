@@ -65,8 +65,10 @@ export class Model {
   constructor(options: Model.IOptions) {
     // The order of the plugins changes between page loads. A sort makes
     // the layouts stable.
+    // JupyterLite gives the plugins without the `enabled`, `requires` and
+    // `optional` fields, and lists only the enabled plugins.
     this._plugins = options.plugins
-      .filter(plugin => plugin.enabled)
+      .filter(plugin => plugin.enabled !== false)
       .sort((a, b) => a.id.localeCompare(b.id));
   }
 
@@ -186,10 +188,10 @@ export class Model {
     };
     for (const plugin of this._plugins) {
       if (this._state.requires) {
-        connect(plugin, plugin.requires, false);
+        connect(plugin, plugin.requires ?? [], false);
       }
       if (this._state.optional) {
-        connect(plugin, plugin.optional, true);
+        connect(plugin, plugin.optional ?? [], true);
       }
     }
 

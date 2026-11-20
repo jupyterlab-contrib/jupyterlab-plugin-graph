@@ -3,10 +3,19 @@
 [![Extension status](https://img.shields.io/badge/status-ready-success 'ready to be used')](https://jupyterlab-contrib.github.io/)
 [![Github Actions Status](https://github.com/jupyterlab-contrib/jupyterlab-plugin-graph/workflows/Build/badge.svg)](https://github.com/jupyterlab-contrib/jupyterlab-plugin-graph/actions/workflows/build.yml)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jupyterlab-contrib/jupyterlab-plugin-graph/main?urlpath=lab)
+[![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://jupyterlab-contrib.github.io/jupyterlab-plugin-graph/lab/index.html)
 
 JupyterLab extension to show an interactive dependency graph of all the installed plugins.
 
 ![screenshot](./screenshot.png)
+
+## Try it in your browser
+
+You can try the extension directly in your browser with JupyterLite, without installing anything:
+
+[![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://jupyterlab-contrib.github.io/jupyterlab-plugin-graph/lab/index.html)
+
+The site is deployed to GitHub Pages from the [demo](./demo) folder.
 
 ## Usage
 
