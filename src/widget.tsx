@@ -330,7 +330,6 @@ const Toggle = (
             }}
           />
           {type === 'requires' ? trans.__('Requires') : trans.__('Optional')}
-          <span className={`jp-PluginGraph-edge jp-mod-${type}`} />
         </label>
       )}
     </UseSignal>

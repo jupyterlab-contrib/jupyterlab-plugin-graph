@@ -35,15 +35,6 @@
   margin: 0;
 }
 
-.jp-PluginGraph-edge {
-  width: 20px;
-  border-top: 2px solid var(--jp-ui-font-color2);
-}
-
-.jp-PluginGraph-edge.jp-mod-optional {
-  border-top-style: dashed;
-}
-
 .jp-PluginGraph-counts {
   padding: 0 8px;
   color: var(--jp-ui-font-color2);
