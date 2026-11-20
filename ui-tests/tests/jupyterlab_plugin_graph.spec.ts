@@ -72,3 +72,22 @@ test('should zoom with the toolbar buttons', async ({ page }) => {
   const zoomedOut = await settledScreenshot(canvas);
   expect(zoomedOut.equals(zoomedIn)).toBe(false);
 });
+
+test('should pan the graph from an empty area', async ({ page }) => {
+  await openGraph(page);
+
+  const canvas = page.locator('.jp-PluginGraph canvas');
+  const initial = await settledScreenshot(canvas);
+
+  // The bottom right corner is outside the bounds of the nodes.
+  const box = (await canvas.boundingBox())!;
+  const x = box.x + box.width - 30;
+  const y = box.y + box.height - 30;
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x - 200, y - 150, { steps: 10 });
+  await page.mouse.up();
+
+  const moved = await settledScreenshot(canvas);
+  expect(moved.equals(initial)).toBe(false);
+});

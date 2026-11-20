@@ -201,6 +201,8 @@ class Graph extends Widget {
           left,
           preserveAspect: true,
           roam: true,
+          // By default, only the bounds of the nodes react to pan and zoom.
+          roamTrigger: 'global',
           zoom: 1,
           center: undefined,
           draggable: !circular,
