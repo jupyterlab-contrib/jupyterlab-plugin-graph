@@ -127,3 +127,6 @@ dmypy.json
 
 # Yarn cache
 .yarn/
+
+# JupyterLite
+.jupyterlite.doit.db

@@ -16,7 +16,8 @@ export default defineConfig([
       '.venv',
       'tests',
       '**/__tests__',
-      'ui-tests'
+      'ui-tests',
+      'demo'
     ]
   },
   js.configs.recommended,
